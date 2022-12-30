@@ -43,7 +43,7 @@ if (isset($config['system_timezone']) && isset($config['system_timezone_gmt'])) 
     date_default_timezone_set('Asia/Kolkata');
     $db->sql("SET `time_zone` = '+05:30'");
 }
-if (isset($_GET['table']) && $_GET['table'] == 'dashboard_info') {
+if (isset($_GET['table']) && $_GET['table'] == 'users') {
     $offset = 0;
     $limit = 10;
     $where = '';
@@ -61,7 +61,7 @@ if (isset($_GET['table']) && $_GET['table'] == 'dashboard_info') {
 
     if (isset($_GET['search']) && !empty($_GET['search'])) {
         $search = $db->escapeString($fn->xss_clean($_GET['search']));
-        $where .= "WHERE id like '%" . $search . "%' OR title like '%" . $search . "%'  OR description like '%" . $search . "%'";
+        $where .= "WHERE id like '%" . $search . "%' OR email like '%" . $search . "%'  OR property_type like '%" . $search . "%'";
     }
     if (isset($_GET['sort'])){
         $sort = $db->escapeString($_GET['sort']);
@@ -71,13 +71,13 @@ if (isset($_GET['table']) && $_GET['table'] == 'dashboard_info') {
         $order = $db->escapeString($_GET['order']);
 
     }        
-    $sql = "SELECT COUNT(`id`) as total FROM `dashboard_info`" . $where;
+    $sql = "SELECT COUNT(`id`) as total FROM `users`" . $where;
     $db->sql($sql);
     $res = $db->getResult();
     foreach ($res as $row)
         $total = $row['total'];
 
-    $sql = "SELECT * FROM dashboard_info ". $where ." ORDER BY " . $sort . " " . $order . " LIMIT " . $offset . "," . $limit;
+    $sql = "SELECT * FROM users ". $where ." ORDER BY " . $sort . " " . $order . " LIMIT " . $offset . "," . $limit;
     $db->sql($sql);
     $res = $db->getResult();
 
@@ -87,11 +87,67 @@ if (isset($_GET['table']) && $_GET['table'] == 'dashboard_info') {
     $rows = array();
     $tempRow = array();
     foreach ($res as $row) {
-        $operate = ' <a href="edit-dashboard_info.php?id=' . $row['id'] . '"><i class="fa fa-edit"></i>Edit</a>';
-        $operate .= ' <a class="text text-danger" href="delete-dashboard_info.php?id=' . $row['id'] . '"><i class="fa fa-trash"></i>Delete</a>';
+    
         $tempRow['id'] = $row['id'];
-        $tempRow['title'] = $row['title'];
-        $tempRow['description'] = $row['description'];
+        $tempRow['email'] = $row['email'];
+        $tempRow['password'] = $row['password'];
+        $tempRow['property_type'] = $row['property_type'];
+        $tempRow['bedrooms_count'] = $row['bedrooms_count'];
+        $tempRow['wallet'] = 'Rs.'.$row['wallet'];
+        $rows[] = $tempRow;
+        }
+    $bulkData['rows'] = $rows;
+    print_r(json_encode($bulkData));
+}
+if (isset($_GET['table']) && $_GET['table'] == 'evc_codes') {
+    $offset = 0;
+    $limit = 10;
+    $where = '';
+    $sort = 'id';
+    $order = 'DESC';
+    if (isset($_GET['offset']))
+        $offset = $db->escapeString($fn->xss_clean($_GET['offset']));
+    if (isset($_GET['limit']))
+        $limit = $db->escapeString($fn->xss_clean($_GET['limit']));
+
+    if (isset($_GET['sort']))
+        $sort = $db->escapeString($fn->xss_clean($_GET['sort']));
+    if (isset($_GET['order']))
+        $order = $db->escapeString($fn->xss_clean($_GET['order']));
+
+    if (isset($_GET['search']) && !empty($_GET['search'])) {
+        $search = $db->escapeString($fn->xss_clean($_GET['search']));
+        $where .= "WHERE id like '%" . $search . "%' OR evc_code like '%" . $search . "%'  OR amount like '%" . $search . "%'";
+    }
+    if (isset($_GET['sort'])){
+        $sort = $db->escapeString($_GET['sort']);
+
+    }
+    if (isset($_GET['order'])){
+        $order = $db->escapeString($_GET['order']);
+
+    }        
+    $sql = "SELECT COUNT(`id`) as total FROM `evc_codes`" . $where;
+    $db->sql($sql);
+    $res = $db->getResult();
+    foreach ($res as $row)
+        $total = $row['total'];
+
+    $sql = "SELECT * FROM evc_codes ". $where ." ORDER BY " . $sort . " " . $order . " LIMIT " . $offset . "," . $limit;
+    $db->sql($sql);
+    $res = $db->getResult();
+
+    $bulkData = array();
+    $bulkData['total'] = $total;
+
+    $rows = array();
+    $tempRow = array();
+    foreach ($res as $row) {
+           
+        $operate = ' <a class="text text-danger" href="delete-evc_code.php?id=' . $row['id'] . '"><i class="fa fa-trash"></i>Delete</a>';
+        $tempRow['id'] = $row['id'];
+        $tempRow['evc_code'] = $row['evc_code'];
+        $tempRow['amount'] = $row['amount'];
         $tempRow['operate'] = $operate;
         $rows[] = $tempRow;
         }

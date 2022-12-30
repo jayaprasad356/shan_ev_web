@@ -26,7 +26,7 @@ include "header.php";
 
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <title>Kalyanbazar- Dashboard</title>
+    <title>Shangrila- Dashboard</title>
 </head>
 
 <body>
@@ -42,39 +42,8 @@ include "header.php";
             </ol>
         </section>
         <section class="content">
-            <!-- <div class="row">
-                <div class="col-lg-4 col-xs-6">
-                    <div class="small-box bg-blue">
-                        <div class="inner">
-                        <h3><?php
-                            $sql = "SELECT * FROM categories";
-                            $db->sql($sql);
-                            $res = $db->getResult();
-                            $num = $db->numRows($res);
-                            echo $num;
-                             ?></h3>
-                            <p>Categories</p>
-                        </div>
-                        <div class="icon"><i class="fa fa-bullseye"></i></div>
-                        <a href="categories.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-xs-6">
-                    <div class="small-box bg-green">
-                        <div class="inner">
-                        <h3><?php
-                            $sql = "SELECT * FROM products";
-                            $db->sql($sql);
-                            $res = $db->getResult();
-                            $num = $db->numRows($res);
-                            echo $num;
-                             ?></h3>
-                            <p>Products</p>
-                        </div>
-                        <div class="icon"><i class="fa fa-cubes"></i></div>
-                        <a href="products.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
+            <div class="row">
+              
                 <div class="col-lg-4 col-xs-6">
                     <div class="small-box bg-red">
                         <div class="inner">
@@ -91,55 +60,7 @@ include "header.php";
                         <a href="users.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                     </div>
                 </div>
-                <div class="col-lg-4 col-xs-6">
-                    <div class="small-box bg-orange">
-                        <div class="inner">
-                        <h3><?php
-                            $sql = "SELECT * FROM orders";
-                            $db->sql($sql);
-                            $res = $db->getResult();
-                            $num = $db->numRows($res);
-                            echo $num;
-                             ?></h3>
-                            <p>Orders</p>
-                        </div>
-                        <div class="icon"><i class="fa fa-shopping-cart"></i></div>
-                        <a href="orders.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-xs-6">
-                    <div class="small-box bg-yellow">
-                        <div class="inner">
-                        <h3><?php
-                            $sql = "SELECT * FROM doctors";
-                            $db->sql($sql);
-                            $res = $db->getResult();
-                            $num = $db->numRows($res);
-                            echo $num;
-                             ?></h3>
-                            <p>Doctors</p>
-                        </div>
-                        <div class="icon"><i class="fa fa-users"></i></div>
-                        <a href="doctors.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-xs-6">
-                    <div class="small-box bg-light-blue">
-                        <div class="inner">
-                        <h3><?php
-                            $sql = "SELECT * FROM appointments";
-                            $db->sql($sql);
-                            $res = $db->getResult();
-                            $num = $db->numRows($res);
-                            echo $num;
-                             ?></h3>
-                            <p>Appointments</p>
-                        </div>
-                        <div class="icon"><i class="fa fa-calendar"></i></div>
-                        <a href="appointments.php" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                    </div>
-                </div>
-            </div> -->
+            </div>
 
         </section>
     </div>

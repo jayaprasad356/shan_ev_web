@@ -114,7 +114,7 @@ $fn = new custom_functions;
                 </span>
                 <!-- logo for regular state and mobile devices -->
                 <span class="logo-lg">
-                    <h3>Kalyanbazar</h3>
+                    <h3>Shangrila</h3>
                 </span>
             </a>
             <!-- Header Navbar: style can be found in header.less -->
@@ -165,16 +165,22 @@ $fn = new custom_functions;
                         <i class="fa fa-home" class="active"></i> <span>Home</span>
                     </a>
                 </li>
-                <!-- <li class="treeview">
-                    <a href="dashboard_info.php">
-                        <i class="fa fa-sliders"></i>
-                        <span>Dashboard Info</span>
+                <li class="treeview">
+                    <a href="users.php">
+                        <i class="fa fa-user"></i>
+                        <span>Users</span>
                     </a>
-                </li> -->
+                </li>
                 <li class="treeview">
                     <a href="settings.php">
                         <i class="fa fa-gear"></i>
                         <span>Settings</span>
+                    </a>
+                </li>
+                <li class="treeview">
+                    <a href="evc_codes.php">
+                        <i class="fa fa-refresh"></i>
+                        <span>Generate Evc Codes</span>
                     </a>
                 </li>
               
