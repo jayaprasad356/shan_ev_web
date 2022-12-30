@@ -15,9 +15,9 @@ class Database
      */
 
     private $db_host = "localhost";  // Change as required
-    private $db_user = "root";  // Change as required
-    private $db_pass = "";  // Change as required
-    private $db_name = "shangrila";    // Change as required
+    private $db_user = "u743445510_shan_evc";  // Change as required
+    private $db_pass = "Shanevc123";  // Change as required
+    private $db_name = "u743445510_shan_evc";    // Change as required
 
     /*
      * Extra variables that are required by other function such as boolean con variable
