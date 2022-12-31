@@ -33,7 +33,7 @@ $res = $db->getResult();
 $num = $db->numRows($res);
 if ($num == 1){
     $amount=$res[0]['amount'];
-    $sql = "UPDATE users SET wallet='$amount' WHERE id=" . $user_id;
+    $sql = "UPDATE users SET wallet=wallet + $amount WHERE id=" . $user_id;
     $db->sql($sql);
     $sql = "SELECT * FROM users WHERE id=" . $user_id;
     $db->sql($sql);

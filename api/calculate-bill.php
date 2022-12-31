@@ -19,35 +19,12 @@ if (empty($_POST['user_id'])) {
     print_r(json_encode($response));
     return false;
 }
-if (empty($_POST['date'])) {
-    $response['success'] = false;
-    $response['message'] = "Date is Empty";
-    print_r(json_encode($response));
-    return false;
-}
-if (empty($_POST['emr_day'])) {
-    $response['success'] = false;
-    $response['message'] = "EMR Day is Empty";
-    print_r(json_encode($response));
-    return false;
-}
-if (empty($_POST['emr_night'])) {
-    $response['success'] = false;
-    $response['message'] = "EMR Night is Empty";
-    print_r(json_encode($response));
-    return false;
-}
-if (empty($_POST['gmr'])) {
-    $response['success'] = false;
-    $response['message'] = "GMR is Empty";
-    print_r(json_encode($response));
-    return false;
-}
 
 $user_id = $db->escapeString($_POST['user_id']);
-$emr_day = $db->escapeString($_POST['emr_day']);
-$emr_night = $db->escapeString($_POST['emr_night']);
-$gmr = $db->escapeString($_POST['gmr']);
+$emr_day = (isset($_POST['emr_day']) && !empty($_POST['emr_day'])) ? $db->escapeString($_POST['emr_day']) : 0;
+$emr_night = (isset($_POST['emr_night']) && !empty($_POST['emr_night'])) ? $db->escapeString($_POST['emr_night']) : 0;
+$gmr = (isset($_POST['gmr']) && !empty($_POST['gmr'])) ? $db->escapeString($_POST['gmr']) : 0;
+
 $sql = "SELECT * FROM settings WHERE id =1";
 $db->sql($sql);
 $res = $db->getResult();
