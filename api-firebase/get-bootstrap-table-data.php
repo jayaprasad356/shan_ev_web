@@ -155,4 +155,67 @@ if (isset($_GET['table']) && $_GET['table'] == 'evc_codes') {
     print_r(json_encode($bulkData));
 }
 
+//bills
+if (isset($_GET['table']) && $_GET['table'] == 'bills') {
+    $offset = 0;
+    $limit = 10;
+    $where = '';
+    $sort = 'id';
+    $order = 'DESC';
+    if (isset($_GET['offset']))
+        $offset = $db->escapeString($fn->xss_clean($_GET['offset']));
+    if (isset($_GET['limit']))
+        $limit = $db->escapeString($fn->xss_clean($_GET['limit']));
+
+    if (isset($_GET['sort']))
+        $sort = $db->escapeString($fn->xss_clean($_GET['sort']));
+    if (isset($_GET['order']))
+        $order = $db->escapeString($fn->xss_clean($_GET['order']));
+
+    if (isset($_GET['search']) && !empty($_GET['search'])) {
+        $search = $db->escapeString($fn->xss_clean($_GET['search']));
+        $where .= "AND b.id like '%" . $search . "%' OR u.email like '%" . $search . "%'  OR b.total like '%" . $search . "%' OR b.date like '%" . $search . "%' ";
+    }
+    if (isset($_GET['sort'])){
+        $sort = $db->escapeString($_GET['sort']);
+
+    }
+    if (isset($_GET['order'])){
+        $order = $db->escapeString($_GET['order']);
+
+    }        
+
+    $join = "LEFT JOIN `users` u ON b.user_id = u.id WHERE b.id IS NOT NULL ";
+
+    $sql = "SELECT COUNT(b.id) as total FROM `bills` b $join " . $where . "";
+    $db->sql($sql);
+    $res = $db->getResult();
+    foreach ($res as $row)
+        $total = $row['total'];
+
+    $sql = "SELECT b.id AS id,b.*,u.email AS email FROM `bills` b $join 
+            $where ORDER BY $sort $order LIMIT $offset, $limit";
+    $db->sql($sql);
+    $res = $db->getResult();
+
+    $bulkData = array();
+    $bulkData['total'] = $total;
+
+    $rows = array();
+    $tempRow = array();
+    foreach ($res as $row) {
+    
+        $tempRow['id'] = $row['id'];
+        $tempRow['email'] = $row['email'];
+        $tempRow['date'] = $row['date'];
+        $tempRow['emr_day'] = $row['emr_day'];
+        $tempRow['emr_night'] = $row['emr_night'];
+        $tempRow['gmr_day'] = $row['gmr'];
+        $tempRow['total'] = 'Rs.'.$row['total'];
+        $rows[] = $tempRow;
+        }
+    $bulkData['rows'] = $rows;
+    print_r(json_encode($bulkData));
+}
+
 $db->disconnect();

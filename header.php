@@ -183,6 +183,12 @@ $fn = new custom_functions;
                         <span>Generate Evc Codes</span>
                     </a>
                 </li>
+                <li class="treeview">
+                    <a href="bills.php">
+                        <i class="fa fa-file"></i>
+                        <span>Bills</span>
+                    </a>
+                </li>
               
             </ul>
             </section>
