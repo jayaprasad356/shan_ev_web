@@ -62,6 +62,10 @@ if ($num == 1){
             return false;
 
         }
+        $emr_day = $emr_day - $emr_day_bill;
+        $emr_night = $emr_night - $emr_night_bill;
+        $gmr = $gmr - $gmr_bill;
+
         
         
         
