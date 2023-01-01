@@ -33,7 +33,7 @@ if ($num == 1){
     $day_emr_price = $res[0]['day_electricity_meter_reading'];
     $night_emr_price = $res[0]['night_electricity_meter_reading'];
     $day_gmr_price = $res[0]['day_gas_meter_reading'];
-    $sql = "SELECT * FROM bills WHERE user_id=" . $user_id;
+    $sql = "SELECT * FROM bills WHERE user_id= $user_id ORDER BY id DESC LIMIT 1";
     $db->sql($sql);
     $resbill = $db->getResult();
     $num = $db->numRows($resbill);
