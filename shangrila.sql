@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 28, 2022 at 12:12 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- Generation Time: Jan 02, 2023 at 08:23 AM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 7.4.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -42,7 +42,8 @@ CREATE TABLE `bills` (
 --
 
 INSERT INTO `bills` (`id`, `user_id`, `date`, `emr_day`, `emr_night`, `gmr`, `total`) VALUES
-(1, 1, '2022-12-28', 5, 7, 5, 1525);
+(1, 1, '2022-12-28', 5, 7, 5, 1525),
+(2, 4, '2022-03-13', 15, 21, 25, 5025);
 
 -- --------------------------------------------------------
 
@@ -62,7 +63,8 @@ CREATE TABLE `evc_codes` (
 
 INSERT INTO `evc_codes` (`id`, `amount`, `evc_code`) VALUES
 (1, '100', 41403383),
-(2, '5000', 99975507);
+(2, '5000', 99975507),
+(3, '455', 34382203);
 
 -- --------------------------------------------------------
 
@@ -106,7 +108,8 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `email`, `password`, `property_type`, `bedrooms_count`, `wallet`) VALUES
 (1, 'sample45@gmail.com', 'Samplere@167', 'Washing Machine', 4, 1475),
 (2, 'kathiresan421@gmail.com', 'kathiresan1344', 'Refridgerator', 3, 100),
-(3, 'larasicool98@gmail.com', 'larasi490', 'AirCooler', 7, 0);
+(3, 'larasicool98@gmail.com', 'larasi490', 'AirCooler', 7, 0),
+(4, 'jp@gmail.com', '12345678', 'Detached', 56, 75);
 
 --
 -- Indexes for dumped tables
@@ -144,13 +147,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `bills`
 --
 ALTER TABLE `bills`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `evc_codes`
 --
 ALTER TABLE `evc_codes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -162,7 +165,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
