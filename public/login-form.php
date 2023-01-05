@@ -1,7 +1,7 @@
 <?php
 
 
-include('./includes/variables.php');
+
 include_once('includes/custom-functions.php');
 $fn = new custom_functions;
 
@@ -30,7 +30,7 @@ if (isset($_POST['btnLogin'])) {
 
     // if email and password is not empty, check in database
     if (!empty($username) && !empty($password)) {
-        if($username == 'admin' && $password == 'admin123'){
+        if($username == 'gse@shangrila.gov.un' && $password == 'gse@energy'){
             $_SESSION['id'] = '1';
             $_SESSION['role'] ='admin';
             $_SESSION['username'] = 'username';
@@ -64,7 +64,7 @@ if (isset($_POST['btnLogin'])) {
             <form method="post" enctype="multipart/form-data">
                 <div class="box-body">
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Username :</label>
+                        <label for="exampleInputEmail1">Email :</label>
                         <input type="text" name="username" class="form-control" value="<?= defined('ALLOW_MODIFICATION') && ALLOW_MODIFICATION == 0 ? 'admin' : '' ?>" required>
                     </div>
                     <div class="form-group">

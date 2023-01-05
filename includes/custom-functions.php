@@ -1,8 +1,6 @@
 <?php
 
 include_once('crud.php');
-require_once('firebase.php');
-require_once('push.php');
 require_once('functions.php');
 
 
@@ -63,90 +61,8 @@ class custom_functions
         // we are done...
         return $data;
     }
-    public function get_configurations()
-    {
-        $sql = "SELECT value FROM settings WHERE `variable`='system_timezone'";
-        $this->db->sql($sql);
-        $res = $this->db->getResult();
-        if (!empty($res)) {
-            return json_decode($res[0]['value'], true);
-        } else {
-            return false;
-        }
-    }
-    public function validate_image($file, $is_image = true)
-    {
-        if (function_exists('finfo_file')) {
-            $finfo = finfo_open(FILEINFO_MIME_TYPE);
-            $type = finfo_file($finfo, $file['tmp_name']);
-        } else if (function_exists('mime_content_type')) {
-            $type = mime_content_type($file['tmp_name']);
-        } else {
-            $type = $file['type'];
-        }
-        $type = strtolower($type);
-        if ($is_image == false) {
-            if (in_array($type, array('text/plain', 'application/csv', 'application/vnd.ms-excel', 'text/csv'))) {
-                return true;
-            } else {
-                return false;
-            }
-        } else {
-            if (in_array($type, array('image/jpg', 'image/jpeg', 'image/gif', 'image/png', 'application/octet-stream'))) {
-                return true;
-            } else {
-                return false;
-            }
-        }
-    }
 
-    public function get_settings($variable, $is_json = false)
-    {
-        if ($variable == 'logo' || $variable == 'Logo') {
-            $sql = "select value from `settings` where variable='Logo' OR variable='logo'";
-        } else {
-            $sql = "SELECT value FROM `settings` WHERE `variable`='$variable'";
-        }
-
-        $this->db->sql($sql);
-        $res = $this->db->getResult();
-        if (!empty($res) && isset($res[0]['value'])) {
-            if ($is_json)
-                return json_decode($res[0]['value'], true);
-            else
-                return $res[0]['value'];
-        } else {
-            return false;
-        }
-    }
-    public function send_notification_to_user($notify_user_id, $notify_post_id, $type, $category)
-    {
-        if($type == 'post'){
-            $sql = "SELECT * FROM users WHERE id = '" . $notify_user_id . "'";
-            $this->db->sql($sql);
-            $res = $this->db->getResult();
-            $sql = "SELECT * FROM posts WHERE id = '" . $notify_post_id . "'";
-            $this->db->sql($sql);
-            $postres = $this->db->getResult();
-            $user_id = $postres[0]['user_id'];
-            $user_name = $res[0]['name'];
-            $title = $user_name .' '. $category . ' Your Post';
-            $sql = "INSERT INTO notifications (`user_id`,`notify_user_id`,`notify_post_id`,`title`,`type`) VALUES ('$user_id','$notify_user_id','$notify_post_id','$title','$type')";
-            $this->db->sql($sql);
-
-        }
-        else{
-            $sql = "SELECT * FROM users WHERE id = '" . $notify_user_id . "'";
-            $this->db->sql($sql);
-            $res = $this->db->getResult();
-            $user_name = $res[0]['name'];
-            $title = $user_name .' Started Following You';
-            $sql = "INSERT INTO notifications (`user_id`,`notify_user_id`,`title`,`type`) VALUES ('$notify_post_id','$notify_user_id','$title','$type')";
-            $this->db->sql($sql);
-
-        }
-
-    }
+    
 
 }
 // $this->db->disconnect();

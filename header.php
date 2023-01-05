@@ -3,7 +3,6 @@ $db = new Database();
 $db->connect();
 $db->sql("SET NAMES 'utf8'");
 
-include('includes/variables.php');
 include_once('includes/custom-functions.php');
 include_once('includes/functions.php');
 $fn = new custom_functions;

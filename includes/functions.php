@@ -1,23 +1,6 @@
 <?php
 include_once('crud.php');
-/*
------------------
-Functions 
------------------
-1. get_system_configs() 
-2. get_random_string($valid_chars, $length)
-3. sanitize($string) 
-4. check_integer($which)
-5. get_current_page()
-6. doPages($page_size, $thepage, $query_string, $total=0, $keyword)
-7. slugify($text)
-8. registerDevice($user_id,$token)
-9. isDeviceRegistered($user_id)
-10. getAllTokens()
-11. getTokenByEmail($email)
-12. getAllDevices()
 
-*/
 class functions
 {
     protected $db;
